@@ -95,7 +95,7 @@ def get_option_chains(ticker=None):
     # get first options to get all the expiration dates
     url = '''https://query1.finance.yahoo.com/v7/finance/options/{0}?formatted=true&lang=en-US&region=US&corsDomain=finance.yahoo.com'''.format(
         ticker)
-    print url
+
     a = requests.request(url=url, method='GET', headers=headers)
 
     # get and store first set of options
@@ -112,7 +112,6 @@ def get_option_chains(ticker=None):
     for exp in exps:
         url = '''https://query1.finance.yahoo.com/v7/finance/options/{0}?formatted=true&lang=en-US&region=US&date={1}&corsDomain=finance.yahoo.com'''.format(
             ticker, exp)
-        print url
 
         a = requests.request(url=url, method='GET', headers=headers)
         jd = json.loads(a.content)
