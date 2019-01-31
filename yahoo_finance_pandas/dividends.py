@@ -47,6 +47,8 @@ def get_dividends(ticker=None, start_date=datetime.datetime(2010, 1, 1), end_dat
             dividends.append(row)
 
     df_dividends = pd.DataFrame.from_dict(dividends)
+    if "date" not in df_dividends.columns.tolist():
+        return None
     df_dividends["date"] = df_dividends["date"].apply(lambda x: _convert_epoch_to_datetime(x))
     del df_dividends["data"]
 

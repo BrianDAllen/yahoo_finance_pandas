@@ -122,7 +122,13 @@ def get_option_chains(ticker=None):
             puts.append(cur_puts)
 
     # finally, concat all the calls and puts into 2 dfs
-    df_calls = pd.concat(calls)
-    df_puts = pd.concat(puts)
+    if len(calls) > 0:
+        df_calls = pd.concat(calls)
+    else:
+        df_calls = None
+    if len(puts) > 0:
+        df_puts = pd.concat(puts)
+    else:
+        df_puts = None
 
     return df_calls, df_puts

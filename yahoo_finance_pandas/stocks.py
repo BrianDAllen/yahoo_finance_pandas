@@ -48,6 +48,9 @@ def get_stocks(ticker=None, start_date=datetime.datetime(2010, 1, 1), end_date=d
             ticks.append(row)
 
     df_ticks = pd.DataFrame.from_dict(ticks)
+    if "date" not in df_ticks.columns.tolist():
+        return None
+
     df_ticks["date"] = df_ticks["date"].apply(lambda x: _convert_epoch_to_datetime(x))
 
     return df_ticks
